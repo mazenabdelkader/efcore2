@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using efcore2;
 
@@ -10,9 +11,11 @@ using efcore2;
 namespace efcore2.Migrations
 {
     [DbContext(typeof(db))]
-    partial class dbModelSnapshot : ModelSnapshot
+    [Migration("20250310195042_0")]
+    partial class _0
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

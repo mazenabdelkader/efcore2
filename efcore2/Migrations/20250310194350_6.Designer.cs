@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using efcore2;
 
@@ -10,9 +11,11 @@ using efcore2;
 namespace efcore2.Migrations
 {
     [DbContext(typeof(db))]
-    partial class dbModelSnapshot : ModelSnapshot
+    [Migration("20250310194350_6")]
+    partial class _6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,8 +66,6 @@ namespace efcore2.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("id");
-
-                    b.HasIndex("topicid");
 
                     b.ToTable("courses");
                 });
@@ -221,17 +222,6 @@ namespace efcore2.Migrations
                     b.Navigation("course_id");
 
                     b.Navigation("stud_id");
-                });
-
-            modelBuilder.Entity("efcore2.course", b =>
-                {
-                    b.HasOne("efcore2.topic", "topic")
-                        .WithMany()
-                        .HasForeignKey("topicid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("topic");
                 });
 
             modelBuilder.Entity("efcore2.course_inst", b =>

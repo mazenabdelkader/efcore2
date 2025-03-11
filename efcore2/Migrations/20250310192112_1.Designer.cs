@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using efcore2;
 
@@ -10,9 +11,11 @@ using efcore2;
 namespace efcore2.Migrations
 {
     [DbContext(typeof(db))]
-    partial class dbModelSnapshot : ModelSnapshot
+    [Migration("20250310192112_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,19 +62,22 @@ namespace efcore2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("topicid")
+                    b.Property<int>("topic_Id")
                         .HasColumnType("int");
 
                     b.HasKey("id");
 
-                    b.HasIndex("topicid");
+                    b.HasIndex("topic_Id");
 
                     b.ToTable("courses");
                 });
 
             modelBuilder.Entity("efcore2.course_inst", b =>
                 {
-                    b.Property<int>("course_idid")
+                    b.Property<int>("course_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("courseid")
                         .HasColumnType("int");
 
                     b.Property<int>("evalute")
@@ -80,7 +86,7 @@ namespace efcore2.Migrations
                     b.Property<int>("inst_idid")
                         .HasColumnType("int");
 
-                    b.HasIndex("course_idid");
+                    b.HasIndex("courseid");
 
                     b.HasIndex("inst_idid");
 
@@ -227,7 +233,7 @@ namespace efcore2.Migrations
                 {
                     b.HasOne("efcore2.topic", "topic")
                         .WithMany()
-                        .HasForeignKey("topicid")
+                        .HasForeignKey("topic_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -236,9 +242,9 @@ namespace efcore2.Migrations
 
             modelBuilder.Entity("efcore2.course_inst", b =>
                 {
-                    b.HasOne("efcore2.course", "course_id")
+                    b.HasOne("efcore2.course", "course")
                         .WithMany()
-                        .HasForeignKey("course_idid")
+                        .HasForeignKey("courseid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -248,7 +254,7 @@ namespace efcore2.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("course_id");
+                    b.Navigation("course");
 
                     b.Navigation("inst_id");
                 });

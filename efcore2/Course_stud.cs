@@ -7,10 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace efcore2
 {
-    
-    internal class topic
+  
+    [Keyless]
+    internal class Course_stud
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        public student stud_id { get; set; }
+        public course course_id { get; set; }
+        public int grade { get; set; }
     }
 }
